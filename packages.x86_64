@@ -34,6 +34,10 @@ fsarchiver
 gnu-netcat
 gpart
 gpm
+git
+zsh
+radare2
+neovim
 gptfdisk
 grml-zsh-config
 grub
