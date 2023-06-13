@@ -17,6 +17,7 @@ ddrescue
 dhclient
 dhcpcd
 diffutils
+direnv
 dmidecode
 dmraid
 dnsmasq
@@ -31,13 +32,11 @@ f2fs-tools
 fatresize
 foot-terminfo
 fsarchiver
+fzf
+git
 gnu-netcat
 gpart
 gpm
-git
-zsh
-radare2
-neovim
 gptfdisk
 grml-zsh-config
 grub
@@ -75,6 +74,7 @@ mtools
 nano
 nbd
 ndisc6
+neovim
 nfs-utils
 nilfs-utils
 nmap
@@ -93,6 +93,8 @@ ppp
 pptpclient
 pv
 qemu-guest-agent
+radare2
+ranger
 refind
 reflector
 reiserfsprogs
@@ -121,10 +123,11 @@ vim
 virtualbox-guest-utils-nox
 vpnc
 wezterm-terminfo
-wireless-regdb
 wireless_tools
+wireless-regdb
 wpa_supplicant
 wvdial
 xfsprogs
 xl2tpd
+zoxide
 zsh
