@@ -6,6 +6,7 @@ archiso
 b43-fwcutter
 base
 bind
+bottom
 brltty
 broadcom-wl
 btrfs-progs
@@ -33,6 +34,7 @@ fatresize
 foot-terminfo
 fsarchiver
 fzf
+gdu
 git
 gnu-netcat
 gpart
@@ -48,6 +50,7 @@ iw
 iwd
 jfsutils
 kitty-terminfo
+lazygit
 less
 lftp
 libfido2
@@ -78,6 +81,7 @@ neovim
 nfs-utils
 nilfs-utils
 nmap
+nodejs
 ntfs-3g
 nvme-cli
 open-iscsi
@@ -98,6 +102,7 @@ ranger
 refind
 reflector
 reiserfsprogs
+ripgrep
 rp-pppoe
 rsync
 rxvt-unicode-terminfo
