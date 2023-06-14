@@ -207,3 +207,6 @@ blackarch_setup()
 }
 
 blackarch_setup
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+cp .zshrc.local .zshrc
