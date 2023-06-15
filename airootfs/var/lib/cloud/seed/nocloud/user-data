@@ -1,5 +1,65 @@
 #cloud-config
+
+# from 1 files
+# part-001
+
+---
+chpasswd:
+  expire: false
+fqdn: vmi1332848.contaboserver.net
+manage_etc_hosts: true
+package_upgrade: true
+password: KkQDUmsxfcNp7Fxsp3k_tyP2cJ2jTTANssEno@G2VyaCueCwpn
+runcmd:
+  - passwd -u admin || usermod -p "*" admin
+ssh_authorized_keys:
+  - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgTVvX4N6/lWwo+kvgyq7btbX3snqTlyu0MgWOdW6/Q
+    vinayakkaushik@protonmail.com
+ssh_pwauth: true
+timezone: Europe/Berlin
+user: admin
 users:
-  - name: root
-    ssh_authorized_keys:
-      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgTVvX4N6/lWwo+kvgyq7btbX3snqTlyu0MgWOdW6/Q vinayakkaushik@protonmail.com
+  - default
+write_files:
+  - content: IyEvYmluL3NoCmVjaG8gMSA+IC9wcm9jL3N5cy92bS9kcm9wX2NhY2hlcwo=
+    encoding: b64
+    path: /etc/cron.hourly/free
+    permissions: '0755'
+  - content: IyEvYmluL3NoCmZzdHJpbSAvCg==
+    encoding: b64
+    path: /etc/cron.daily/fstrim
+    permissions: '0755'
+  - content: a2VybmVsLnBhbmljID0gMTAK
+    encoding: b64
+    path: /etc/sysctl.d/10-panic.conf
+    permissions: '0644'
+  - content: H4sIAAAAAAAAA3WMMQ+CMBCF9/6KN5Cgg6nEzYREBxMGBhP9AwXO0NC0TVtwUP+7BRVdXO7e++69OxWHssx5JTX3LTvuz0XOe++4MrVQ3Ee+/fGTfcH58s1EwdjOUWVMgBuHtHH3geDIKlETksWMlPQBDQ2g0K7ha2NHpjvc0ZJosNJZlOLaIb3BOqkDkgyPdIlBiv+P3hXe0EX0KvC5u5m6nxx7AnwYZvv5AAAA
+    encoding: gz+b64
+    path: /etc/cron.d/staticroute
+    permissions: '0644'
+  - content: c3NoX3B3YXV0aDogMQpzc2hfZGVsZXRla2V5czogMAo=
+    encoding: b64
+    path: /etc/cloud/cloud.cfg.d/99-ssh.cfg
+    permissions: '0644'
+  - content: H4sIAAAAAAAAAy1OTWvDMAy961e8ndrCiP9CoafeB7sEPDdVSSCzslgpBPzjJ7k1snh+XxiIfgjBQbALtGm0Q7w481RUe5oRffWpTQ3ojY84NcFNMVYc48nY7gcequ+MrZdA6L3eV6ix9tFTwatida4JRN88D/LLH0Rf41RQeH3yCkOjFOU7bjsukjXdpMP1gV02jOnJSHnH38ZFJ8kFsiKzuUeel09aZk6FcZd8UKPKpEkZKhi8aVBsBUlRtmWRVc/Du9/+0RH9A6h+ncouAQAA
+    encoding: gz+b64
+    path: /etc/motd
+    permissions: '0644'
+mounts:
+  - [ephemeral0, /mnt, auto, 'defaults,noexec']
+
+# mount_default_fields
+# These values are used to fill in any entries in 'mounts' that are not
+# complete.  This must be an array, and must have 6 fields.
+mount_default_fields: [None, None, 'auto', 'defaults,nofail', '0', '2']
+
+disk_setup:
+  /dev/sda:
+    table_type: gpt
+    layout: True
+    overwrite: True
+
+fs_setup:
+  - device: /dev/sda
+    partition: 1
+    filesystem: ext4
