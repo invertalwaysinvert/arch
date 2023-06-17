@@ -2,10 +2,11 @@ sudo pacman -S --noconfirm git archiso tmux
 &&
 git clone https://github.com/invertalwaysinvert/arch
 &&
-tmux new "sudo mkarchiso -v -w /tmp/archiso-tmp arch"
-&& cd out && python3 -m http.server
+tmux new "sudo mkarchiso -v -w /tmp/archiso-tmp arch && cd out && python3 -m http.server"
 
-http://38.242.246.142:8000/razor-2023.06.15-x86_64.iso
+archinstall --config config.json --creds creds.json --disk_layouts disks.json --silent
+
+mount -o remount,size=2G /run/archiso/cowspace
 
 # TODO:
 
