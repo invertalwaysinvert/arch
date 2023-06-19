@@ -63,3 +63,4 @@ fs_setup:
   - device: /dev/sda
     partition: 1
     filesystem: ext4
+datasource_list: [NoCloud, None]

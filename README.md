@@ -4,9 +4,14 @@ git clone https://github.com/invertalwaysinvert/arch
 &&
 tmux new "sudo mkarchiso -v -w /tmp/archiso-tmp arch && cd out && python3 -m http.server"
 
-archinstall --config config.json --creds creds.json --disk_layouts disks.json --silent
+archinstall --config https://raw.githubusercontent.com/invertalwaysinvert/arch/main/airootfs/etc/skel/config.json --creds https://raw.githubusercontent.com/invertalwaysinvert/arch/main/airootfs/etc/skel/creds.json --disk_layouts https://raw.githubusercontent.com/invertalwaysinvert/arch/main/airootfs/etc/skel/disks.json --silent
 
 mount -o remount,size=2G /run/archiso/cowspace
+
+sudo mkfs.btrfs /dev/sda1
+sudo mount /dev/sda1 /mnt
+sudo mkdir /mnt/{upper,work,os}
+sudo mount overlay -t overlay -o lowerdir=/run/archiso/airootfs,upperdir=/mnt/upper,workdir=/mnt/work /mnt/os
 
 # TODO:
 
