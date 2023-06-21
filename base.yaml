@@ -10,13 +10,11 @@ packages:
   - cloud-guest-utils
   - man-db
   - man-pages
+  - git
+  - tmux
 timezone: Europe/Berlin
-growpart:
-  mode: auto
-  devices: ['/']
-  ignore_growroot_disabled: false
-resize_rootfs: true
 runcmd:
   - sudo growpart /dev/sda 3
   - btrfs filesystem resize max /
+  - git clone --depth 1 https://github.com/AstroNvim/AstroNvim /home/arch/.config/nvim
 write_files:

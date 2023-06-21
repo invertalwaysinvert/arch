@@ -69,6 +69,7 @@ if response.status_code == 200:
     for step in track(range(time_to_wait)):
         time.sleep(1)
 else:
+    print(response)
     console.print(
         f":face_vomiting::face_vomiting::face_vomiting: {response.json()['message']}"
     )

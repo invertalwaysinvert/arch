@@ -41,12 +41,12 @@ def convert_to_file_entry(path: str):
         content=content, path=path, permission=permission
     )
     if path.startswith("home"):
-        content = content + "\n    owner: arch:arch"
+        content = content + "\n    owner: arch:arch\n    defer: true"
     return content
 
 
 def files_to_write():
-    root = "/Users/vinayakkaushik/Developer/arch/airootfs"
+    root = "airootfs"
     next = queue.SimpleQueue()
     next.put(root)
     entries = []
