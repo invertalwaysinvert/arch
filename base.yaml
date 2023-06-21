@@ -1,0 +1,22 @@
+#cloud-config
+package_update: true
+package_upgrade: true
+fqdn: vmi1332848.contaboserver.net
+manage_etc_hosts: true
+packages:
+  - neovim
+  - gptfdisk
+  - zsh
+  - cloud-guest-utils
+  - man-db
+  - man-pages
+timezone: Europe/Berlin
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+resize_rootfs: true
+runcmd:
+  - sudo growpart /dev/sda 3
+  - btrfs filesystem resize max /
+write_files:

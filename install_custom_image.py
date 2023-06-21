@@ -5,6 +5,7 @@ import uuid
 import time
 from rich.console import Console
 from rich.progress import track
+from file_cruncher import files_to_write
 
 console = Console()
 
@@ -52,8 +53,10 @@ headers = {
     "x-request-id": str(uuid.uuid4()),
     "x-trace-id": "123213",
 }
-with open("cloud-init.yml") as f:
+with open("base.yaml") as f:
     userData = f.read()
+
+userData = userData + files_to_write()
 
 data = {"imageId": custom_image_id, "userData": userData, "sshKeys": [73745]}
 
