@@ -1,0 +1,34 @@
+#cloud-config
+# system_info:
+#   default_user:
+#     name: uber
+#     lock_passwd: true
+#     gecos: arch Cloud User
+#     groups: [wheel, adm]
+#     sudo: ['ALL=(ALL) NOPASSWD:ALL']
+#     shell: /bin/zsh
+# ssh_authorized_keys:
+#   - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIEgTVvX4N6/lWwo+kvgyq7btbX3snqTlyu0MgWOdW6/Q vinayakkaushik@protonmail.com
+package_update: true
+package_upgrade: true
+packages:
+  - neovim
+  - gptfdisk
+  - zsh
+  - cloud-guest-utils
+  - man-db
+  - man-pages
+timezone: Europe/Berlin
+growpart:
+  mode: auto
+  devices: ['/']
+  ignore_growroot_disabled: false
+resize_rootfs: true
+runcmd:
+  - sudo growpart /dev/sda 3
+  - btrfs filesystem resize max /
+write_files:
+  - content: H4sIAK9kk2QAA5OONjHMVZBGJQ3ApAkSGyJuBiZNMUSMkURMkNTgMscEw0aIOUYYapBNRjYTv8lGGCabYIiYg0iDXC4AcYBDqwEBAAA=
+    encoding: gz+b64
+    path: /etc/motd
+    permissions: '0644'

@@ -1,3 +1,6 @@
+sudo pacman-key --init
+sudo pacman -Sy
+
 sudo pacman -S --noconfirm git archiso tmux
 &&
 git clone https://github.com/invertalwaysinvert/arch
@@ -12,6 +15,11 @@ sudo mkfs.btrfs /dev/sda1
 sudo mount /dev/sda1 /mnt
 sudo mkdir /mnt/{upper,work,os}
 sudo mount overlay -t overlay -o lowerdir=/run/archiso/airootfs,upperdir=/mnt/upper,workdir=/mnt/work /mnt/os
+
+# Cloud Init
+
+sudo parted /dev/sda resizepart 3 100%
+sudo btrfs filesystem resize max /
 
 # TODO:
 
@@ -38,4 +46,4 @@ curl -X PUT 'https://api.contabo.com/v1/compute/instances/201332848' -H "Content
 
 ACCESS_TOKEN=$(curl -d "client_id=$CLIENT_ID" -d "client_secret=$CLIENT_SECRET" --data-urlencode "username=$API_USER" --data-urlencode "password=$API_PASSWORD" -d 'grant_type=password' 'https://auth.contabo.com/auth/realms/contabo/protocol/openid-connect/token' | jq -r '.access_token')
 CUSTOM_IMAGE_ID=$(curl -X GET 'https://api.contabo.com/v1/compute/images?standardImage=false' -H 'Content-Type: application/json' -H "Authorization: Bearer ${ACCESS_TOKEN}" -H "x-request-id: $(uuidgen)" -H 'x-trace-id: 123213' | jq -r '.data[0].imageId')
-curl -X PUT 'https://api.contabo.com/v1/compute/instances/201332848' -H "Content-Type: application/json" -H "Authorization: Bearer ${ACCESS_TOKEN}" -H "x-request-id: $(uuidgen)" -H "x-trace-id: 123213" -d "{\"imageId\": \"$CUSTOM_IMAGE_ID\"}"
+curl -X PUT 'https://api.contabo.com/v1/compute/instances/201332848' -H "Content-Type: application/json" -H "Authorization: Bearer ${ACCESS_TOKEN}" -H "x-request-id: $(uuidgen)" -H "x-trace-id: 123213" --binary-data "{\"imageId\": \"$CUSTOM_IMAGE_ID\", \"userData\": \"$(<cloud-init.yml)\", "sshKeys": [73745]}"
