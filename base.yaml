@@ -4,17 +4,27 @@ package_upgrade: true
 fqdn: vmi1332848.contaboserver.net
 manage_etc_hosts: true
 packages:
-  - neovim
-  - gptfdisk
-  - zsh
   - cloud-guest-utils
+  - direnv
+  - fzf
+  - git
+  - gptfdisk
+  - httpie
+  - lazygit
   - man-db
   - man-pages
-  - git
+  - neovim
+  - nodejs
+  - radare2
+  - ripgrep
+  - rsync
   - tmux
+  - unzip
+  - zip
+  - zoxide
+  - zsh
 timezone: Europe/Berlin
 runcmd:
   - sudo growpart /dev/sda 3
   - btrfs filesystem resize max /
-  - git clone --depth 1 https://github.com/AstroNvim/AstroNvim /home/arch/.config/nvim
 write_files:

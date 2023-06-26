@@ -23,6 +23,9 @@ def convert_to_file_entry(path: str):
     if ".DS_Store" in path:
         return None
 
+    if "nvim/" in path:
+        return None
+
     content = compress_and_encode_file(path)
 
     # Permission

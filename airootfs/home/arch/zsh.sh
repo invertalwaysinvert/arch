@@ -3,3 +3,4 @@ git clone https://github.com/joshskidmore/zsh-fzf-history-search ${ZSH_CUSTOM:=~
 git clone https://github.com/spaceship-prompt/spaceship-prompt.git "$ZSH_CUSTOM/themes/spaceship-prompt" --depth=1
 ln -s "$ZSH_CUSTOM/themes/spaceship-prompt/spaceship.zsh-theme" "$ZSH_CUSTOM/themes/spaceship.zsh-theme"
 mv .zshrc.x .zshrc
+rm zsh.sh
